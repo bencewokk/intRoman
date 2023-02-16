@@ -1,3 +1,7 @@
+package main
+
+import "fmt"
+
 type number struct {
 	integer int
 	roman   string
@@ -30,25 +34,18 @@ func intToRoman(num int) string {
 	var output string
 	nums := []number{I, II, III, IV, V, X, IX, X, XX, XXX, XL, L, XC, C, CC, CCC, CD, D, CM, M, MM, MMM}
 	var numsRn int
-	u := len(nums) - 1
 
-	for {
-		//fmt.Println(u, numsRn)
-		//fmt.Println(u, nums[u].integer)
+	for u := len(nums) - 1; u > -1; u-- {
 		numsRn = num - nums[u].integer
 		if numsRn > 0 || numsRn == 0 {
 			num -= nums[u].integer
 			output = output + nums[u].roman
 		}
-
-		u--
-
-		if numsRn == 0 {
-			break
-		}
 	}
 
-	//fmt.Println(output)
-
 	return output
+}
+
+func main() {
+	fmt.Println(intToRoman(1423))
 }
